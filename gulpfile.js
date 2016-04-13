@@ -9,6 +9,10 @@ var gulp = require('gulp'),
 	minify = require('gulp-minify'),
 	htmlmin = require('gulp-htmlmin'),
 	uglify = require('gulp-uglify'),
+	cssmin = require('gulp-cssmin'),
+	rename = require('gulp-rename'),
+	ignore = require('gulp-ignore'),
+	util = require('gulp-util'),
 	config = {
 		watch: {
 			scss: [
@@ -29,7 +33,7 @@ var gulp = require('gulp'),
 			'html': 'app/dist'
 		},
 		concat: {
-			'css': 'main.min.css',
+			'css': 'main.css',
 			'js': 'main.js'
 		},
 		server: {
@@ -40,18 +44,20 @@ var gulp = require('gulp'),
 
 gulp.task('sass', function() {
 	gulp.src(config.watch.scss)
-		.pipe(sourcemaps.init())
 		.pipe(concat(config.concat.css))
-		.pipe(sourcemaps.write(config.compiled.sourceMaps))
+		.pipe(gulp.dest(config.compiled.css))
+		.pipe(cssmin())
+		.pipe(rename({suffix:'.min'}))
 		.pipe(gulp.dest(config.compiled.css))
 		.pipe(notify('Sass task complete'));
 });
 
 gulp.task('javascript', function() {
 	gulp.src(config.watch.js)
-		.pipe(sourcemaps.init())
 		.pipe(concat(config.concat.js))
-		.pipe(sourcemaps.write(config.compiled.sourceMaps))
+		.pipe(gulp.dest(config.compiled.js))
+		.pipe(rename({suffix: '.min'}))
+		.pipe(uglify().on('error', util.log))
 		.pipe(gulp.dest(config.compiled.js))
 		.pipe(notify('JS Task Complete'));
 });
@@ -61,13 +67,6 @@ gulp.task('html-minify', function() {
 		.pipe(htmlmin({collapseWhitespace: true}))
 		.pipe(gulp.dest(config.compiled.html))
 		.pipe(notify('HTML Minify Done'));
-});
-
-gulp.task('uglify', function() {
-	gulp.src(config.compiled.js)
-		.pipe(uglify())
-		.pipe(gulp.dest('app/dist'))
-		.pipe(notify('Uglify Done'))
 });
 
 gulp.task('server', function() {
@@ -86,4 +85,4 @@ gulp.task('watch', function() {
 });
 
 
-gulp.task('default', ['watch', 'server', 'html-minify', 'uglify']);
+gulp.task('default', ['watch', 'server', 'html-minify']);

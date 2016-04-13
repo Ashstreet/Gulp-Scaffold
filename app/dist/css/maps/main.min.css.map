@@ -1,1 +1,1 @@
-{"version":3,"sources":["main.scss"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA;AACA;AACA","file":"main.min.css","sourcesContent":["body {\n\tbackground-color: lightgray;\n}\n\n.jumbotron {\n\ttext-align: center;\n}"],"sourceRoot":"/source/"}
+{"version":3,"sources":["main.scss"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA","file":"main.min.css","sourcesContent":["body {\n\tbackground-color: lightgray;\n}\n\n.jumbotron {\n\ttext-align: center;\n\tcolor: red;\n}\n"],"sourceRoot":"/source/"}
