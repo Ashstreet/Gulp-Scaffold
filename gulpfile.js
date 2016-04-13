@@ -16,11 +16,14 @@ var gulp = require('gulp'),
 	config = {
 		watch: {
 			scss: [
-				'./app/public/sass/*.scss'
+				'./app/public/sass/*.scss',
+				'./app/public/sass/**/**/*.scss',
+				'./app/public/components/**/**/*.scss'
 			],
 			js: [
 				'./node_modules/jquery/dist/jquery.min.js',
-				'./app/public/js/*.js'
+				'./app/public/js/*.js',
+				'./app/public/components/**/**/*.js'
 			],
 			html: [
 				'./app/public/*.html'
@@ -44,7 +47,9 @@ var gulp = require('gulp'),
 
 gulp.task('sass', function() {
 	gulp.src(config.watch.scss)
+		.pipe(sourcemaps.init())
 		.pipe(concat(config.concat.css))
+		.pipe(sourcemaps.write(config.compiled.sourceMaps))
 		.pipe(gulp.dest(config.compiled.css))
 		.pipe(cssmin())
 		.pipe(rename({suffix:'.min'}))
@@ -54,11 +59,13 @@ gulp.task('sass', function() {
 
 gulp.task('javascript', function() {
 	gulp.src(config.watch.js)
+		.pipe(sourcemaps.init())
 		.pipe(concat(config.concat.js))
 		.pipe(gulp.dest(config.compiled.js))
 		.pipe(rename({suffix: '.min'}))
 		.pipe(uglify().on('error', util.log))
 		.pipe(gulp.dest(config.compiled.js))
+		.pipe(sourcemaps.write(config.compiled.sourceMaps))
 		.pipe(notify('JS Task Complete'));
 });
 

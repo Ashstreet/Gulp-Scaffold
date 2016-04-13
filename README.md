@@ -3,7 +3,7 @@
 #TODO's
 
 - Minify files properly - DONE
-- Bring back Sourcemaps
+- Bring back Sourcemaps - DONE
 - Bootstrap Scss
 - Babel JSX Tranformer
 - Live Reload Solution?
