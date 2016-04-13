@@ -24,9 +24,8 @@ var gulp = require('gulp'),
 		},
 		compiled: {
 			'css': './app/dist/css',
-			'cssMaps': './maps',
+			'sourceMaps': './maps',
 			'js': './app/dist/js',
-			'jsMaps': './maps',
 			'html': 'app/dist'
 		},
 		concat: {
@@ -43,7 +42,7 @@ gulp.task('sass', function() {
 	gulp.src(config.watch.scss)
 		.pipe(sourcemaps.init())
 		.pipe(concat(config.concat.css))
-		.pipe(sourcemaps.write(config.compiled.cssMaps))
+		.pipe(sourcemaps.write(config.compiled.sourceMaps))
 		.pipe(gulp.dest(config.compiled.css))
 		.pipe(notify('Sass task complete'));
 });
@@ -52,7 +51,7 @@ gulp.task('javascript', function() {
 	gulp.src(config.watch.js)
 		.pipe(sourcemaps.init())
 		.pipe(concat(config.concat.js))
-		.pipe(sourcemaps.write(config.compiled.jsMaps))
+		.pipe(sourcemaps.write(config.compiled.sourceMaps))
 		.pipe(gulp.dest(config.compiled.js))
 		.pipe(notify('JS Task Complete'));
 });
