@@ -12,13 +12,11 @@ var gulp = require('gulp'),
 	config = {
 		watch: {
 			scss: [
-				'./app/public/sass/*.scss',
-				'./node_modules/bootstrap/bootstrap.min.css'
+				'./app/public/sass/*.scss'
 			],
 			js: [
-				'./app/*.js',
-				'./app/public/js/*.js',
-				'./node_modules/jquery/dist/jquery.min.js'
+				'./node_modules/jquery/dist/jquery.min.js',
+				'./app/public/js/*.js'
 			],
 			html: [
 				'./app/public/*.html'
@@ -33,7 +31,7 @@ var gulp = require('gulp'),
 		},
 		concat: {
 			'css': 'main.min.css',
-			'js': 'main.min.js'
+			'js': 'main.js'
 		},
 		server: {
 			'serverScript': 'server.js',
@@ -84,9 +82,9 @@ gulp.task('server', function() {
 
 gulp.task('watch', function() {
 	gulp.watch(config.watch.scss, ['sass']);
-	gulp.watch(config.watch.js, ['javascript', 'uglify']);
+	gulp.watch(config.watch.js, ['javascript']);
 	gulp.watch(config.watch.html, ['html-minify']);
 });
 
 
-gulp.task('default', ['watch', 'server', 'html-minify']);
+gulp.task('default', ['watch', 'server', 'html-minify', 'uglify']);
