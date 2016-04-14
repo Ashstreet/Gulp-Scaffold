@@ -1,6 +1,6 @@
 'use strict'
 
-var gulp = require('gulp'),
+const gulp = require('gulp'),
 	sass = require('gulp-sass'),
 	sourcemaps = require('gulp-sourcemaps'),
 	notify = require('gulp-notify'),
@@ -13,6 +13,7 @@ var gulp = require('gulp'),
 	rename = require('gulp-rename'),
 	ignore = require('gulp-ignore'),
 	util = require('gulp-util'),
+	babel = require('gulp-babel'),
 	config = {
 		watch: {
 			scss: [
@@ -45,7 +46,7 @@ var gulp = require('gulp'),
 		}
 	};
 
-gulp.task('sass', function() {
+gulp.task('sass', () => {
 	gulp.src(config.watch.scss)
 		.pipe(sourcemaps.init())
 		.pipe(concat(config.concat.css))
@@ -57,9 +58,12 @@ gulp.task('sass', function() {
 		.pipe(notify('Sass task complete'));
 });
 
-gulp.task('javascript', function() {
+gulp.task('javascript', () => {
 	gulp.src(config.watch.js)
 		.pipe(sourcemaps.init())
+		.pipe(babel({
+			presets: ['es2015']
+		}))
 		.pipe(concat(config.concat.js))
 		.pipe(gulp.dest(config.compiled.js))
 		.pipe(rename({suffix: '.min'}))
@@ -69,23 +73,23 @@ gulp.task('javascript', function() {
 		.pipe(notify('JS Task Complete'));
 });
 
-gulp.task('html-minify', function() {
+gulp.task('html-minify', () => {
 	gulp.src(config.watch.html)
 		.pipe(htmlmin({collapseWhitespace: true}))
 		.pipe(gulp.dest(config.compiled.html))
 		.pipe(notify('HTML Minify Done'));
 });
 
-gulp.task('server', function() {
+gulp.task('server', () => {
 	nodemon({
 		script: config.server.serverScript,
 		ext: config.server.ext
-	}).on('restart', function() {
+	}).on('restart', () => {
 		console.log('Server restarted')
 	})
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', () => {
 	gulp.watch(config.watch.scss, ['sass']);
 	gulp.watch(config.watch.js, ['javascript']);
 	gulp.watch(config.watch.html, ['html-minify']);

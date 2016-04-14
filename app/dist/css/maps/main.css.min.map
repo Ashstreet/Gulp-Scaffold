@@ -1,1 +1,1 @@
-{"version":3,"sources":["c_001/sass/c_001.scss"],"names":[],"mappings":"AAAA;AACA;AACA;AACA","file":"main.css","sourcesContent":["body {\n\tbackground-color: red;\n}\n"],"sourceRoot":"/source/"}
+{"version":3,"sources":["c_001/sass/c_001.scss"],"names":[],"mappings":"AAAA;AACA;AACA;AACA","file":"main.css","sourcesContent":[".jumbotron {\n\ttext-align: center;\n}\n"],"sourceRoot":"/source/"}
