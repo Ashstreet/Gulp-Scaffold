@@ -7,11 +7,15 @@ If you want to use it feel free.
 # What Can It Do?
 Not much but it will:
 
-Compile es2015
-Compile SASS
-jQuery Ready
+⚔ Compile es2015
+
+⚔ Compile SASS
+
+⚔ jQuery Ready
 
 # How Do I Install
-Same as normal, clone this;
+Same as normal, clone this and run:
 
+```javascript
 npm install
+```
