@@ -1,10 +1,17 @@
 # Gulp-Scaffold
 
-#TODO's
+This is purely here to allow me to scaffold a project up quickly.
 
-- Minify files properly - DONE
-- Bring back Sourcemaps - DONE
-- Bootstrap Scss
-- Babel JSX Transformer - DONE
-- Build React Component to test Babel JSX Transformer
-- Fill in the README.md better
+If you want to use it feel free.
+
+# What Can It Do?
+Not much but it will:
+
+Compile es2015
+Compile SASS
+jQuery Ready
+
+# How Do I Install
+Same as normal, clone this;
+
+npm install
